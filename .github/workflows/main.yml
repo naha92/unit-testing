@@ -34,8 +34,8 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         source: "."
-        target: "/home/ubuntu"
+        target: "/root"
 
     - name: Run script on remote server
       run: |
-        ssh -o StrictHostKeyChecking=no user@remote-server 'bash /home/ubuntu/install_apache.sh'
+        ssh -o StrictHostKeyChecking=no user@remote-server 'bash /root/install_apache.sh'
