@@ -17,7 +17,7 @@ jobs:
       run: |
         # Assuming your script is named script.sh and located in the root directory
         chmod +x ./install_apache.sh
-        ./install_apache --test
+        ./install_apache.sh --test
 
   deploy:
     runs-on: ubuntu-latest
