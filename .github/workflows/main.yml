@@ -33,6 +33,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "."
+        target: "/root"
 
     - name: Run script on remote server
       run: |
