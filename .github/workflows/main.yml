@@ -15,9 +15,7 @@ jobs:
 
     - name: Run Bash script tests
       run: |
-        # Assuming your script is named script.sh and located in the root directory
-        chmod +x ./install_apache.sh
-        ./install_apache.sh --test
+        chmod +x ./install_apache.sh &&  ./install_apache.sh 
 
   deploy:
     runs-on: ubuntu-latest
@@ -25,15 +23,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+
+    - name: Debug SSH connection
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+        chmod 600 private_key
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo 'SSH Connection Successful'"
 
     - name: Copy files to VM
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} install_apache.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/root
 
     - name: Run script on remote server
       run: |
-        ssh -o StrictHostKeyChecking=no user@remote-server 'bash /root/install_apache.sh'
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sh /root/my_script.sh'
