@@ -33,7 +33,9 @@ jobs:
 
     - name: Copy files to VM
       run: |
-        sudo scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} install_apache.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/ubuntu
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+        chmod 600 private_key
+        scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} install_apache.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/ubuntu
 
     - name: Run script on remote server
       run: |
