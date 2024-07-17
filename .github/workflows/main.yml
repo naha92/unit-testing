@@ -35,8 +35,8 @@ jobs:
       run: |
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
         chmod 600 private_key
-        scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} install_apache.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/ubuntu
+        scp -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} install_apache.sh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/ubuntu
 
     - name: Run script on remote server
       run: |
-        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sh /ubuntu/my_script.sh'
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sh /home/ubuntu/my_script.sh'
