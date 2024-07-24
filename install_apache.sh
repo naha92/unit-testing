@@ -6,7 +6,7 @@ echo "apt updated"
 sudo apt-get upgrade -y
 echo "apt upgraded"
 # install nginx, MySQL, php
-sudo apt-get install nginx -y; sudo apt-get install mysql-server -y; sudo apt-get install php-fpm php-mysql -y
+sudo apt-get install nginx -y; sudo apt-get install mysql-server -y; sudo apt-get install php7.4-fpm php-mysql -y
 
 # start everything
 sudo systemctl start nginx; sudo systemctl start MySQL; sudo systemctl start php7.4-fpm
