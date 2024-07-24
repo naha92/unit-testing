@@ -45,7 +45,7 @@ sudo echo "server {
 }" > /etc/nginx/sites-available/default 
 
 # edit index page
-sudo echo "<h1>Great Success!<h1>" > /var/www/html/index.html
+sudo echo "<h1>Great Success!<h1>" > /var/www/html/index.nginx-debian.html 
 
 # nginx restart
 sudo systemctl restart nginx
