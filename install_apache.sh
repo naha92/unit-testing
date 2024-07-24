@@ -6,13 +6,13 @@ echo "apt updated"
 sudo apt-get upgrade -y
 echo "apt upgraded"
 # install nginx, MySQL, php
-sudo apt-get install nginx -y; sudo apt-get install mysql-server -y; sudo apt-get install php7.4-fpm php-mysql -y
+sudo apt-get install nginx -y; sudo apt-get install mysql-server -y; sudo apt-get install php-fpm php-mysql -y
 
 # start everything
-sudo systemctl start nginx; sudo systemctl start MySQL; sudo systemctl start php7.4-fpm
+sudo systemctl start nginx; sudo systemctl start MySQL; sudo systemctl start php-fpm
 
 # enable everything (will start after reboot)
-sudo systemctl enable nginx; sudo systemctl enable MySQL; sudo systemctl enable php7.4-fpm
+sudo systemctl enable nginx; sudo systemctl enable MySQL; sudo systemctl enable php-fpm
 
 # Secure MySQL installation (not done before, c+p chat)
 sudo mysql_secure_installation <<EOF
@@ -40,7 +40,7 @@ sudo echo "server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php-fpm.sock;
     }
 }" > /etc/nginx/sites-available/default 
 
