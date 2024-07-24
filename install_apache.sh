@@ -1,12 +1,12 @@
 #!/bin/bash
 sudo -i
 # update/upgrade system
-apt update -y
+apt-get update -y
 echo "apt updated"
-apt upgrade -y
+apt-get upgrade -y
 echo "apt upgraded"
 # install nginx, MySQL, php
-apt install nginx -y; apt install mysql-server -y; apt install php-fpm php-mysql -y
+apt-get install nginx -y; apt-get install mysql-server -y; apt-get install php-fpm php-mysql -y
 
 # start everything
 systemctl start nginx; systemctl start MySQL; systemctl start php7.4-fpm
