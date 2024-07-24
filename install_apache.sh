@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo -i
 # update/upgrade system
-apt-get update -y
+sudo apt-get update -y
 echo "apt updated"
 apt-get upgrade -y
 echo "apt upgraded"
