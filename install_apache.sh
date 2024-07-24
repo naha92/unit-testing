@@ -27,7 +27,7 @@ y
 EOF
 
 # nginx config (php not done before, c+p chat, placeholders for server/domain)
-echo "server {
+sudo echo "server {
     listen 80;
     SSH_HOST;
 
@@ -45,12 +45,12 @@ echo "server {
 }" > /etc/nginx/sites-available/default 
 
 # edit index page
-echo "<h1>Great Success!<h1>" > /var/www/html/index.html
+sudo echo "<h1>Great Success!<h1>" > /var/www/html/index.html
 
 # nginx restart
 sudo systemctl restart nginx
 
 # Create a test PHP file (not done before, c+p from chat)
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+sudo echo "<?php phpinfo(); ?>" | tee /var/www/html/info.php
 
 echo "LEMP stack installation completed. You legend"
