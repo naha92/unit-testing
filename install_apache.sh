@@ -51,6 +51,6 @@ sudo echo "<h1>Great Success!<h1>" > /var/www/html/index.html
 sudo systemctl restart nginx
 
 # Create a test PHP file (not done before, c+p from chat)
-sudo echo "<?php phpinfo(); ?>" | tee /var/www/html/info.php
+sudo echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
 
 echo "LEMP stack installation completed. You legend"
